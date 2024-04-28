@@ -10,7 +10,7 @@
 #' @return The data frame with an additional column for Consumer Risk (CR) values.
 #'
 #' @examples
-#'
+#' @export
 
 
 add_CR_b <- function(data,M,pi){
