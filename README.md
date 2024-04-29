@@ -22,7 +22,12 @@ service costs.
 You can install the development version of mbrdt like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# Install remotes package if not already installed
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+# Install the package from GitHub
+remotes::install_github("bj0909/mbrdt")
 ```
 
 ## Example
