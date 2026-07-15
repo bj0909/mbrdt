@@ -17,6 +17,15 @@ considering the multi-stage acceptance uncertainties and the potential
 subsequent costs of RDT, such as reliability growth costs and warranty
 service costs.
 
+The maintained package is self-contained: no external historical dataset
+is required. Test plans, simulation samples, stage outputs, and
+post-processing summaries are generated from documented function
+arguments and random seeds.
+
+The workflow has been tested with R 4.2.1. Rebuilding the README and
+vignette also requires `knitr`, `rmarkdown`, and Pandoc; these are not
+runtime data dependencies.
+
 ## Installation
 
 You can install the development version of mbrdt like so:
@@ -29,6 +38,38 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 # Install the package from GitHub
 remotes::install_github("bj0909/mbrdt")
 ```
+
+## Main workflow
+
+The main simulation function is `multiStageRdt()`. It enumerates
+candidate test plans, generates Monte Carlo and Metropolis-Hastings
+samples internally, and writes `data_<stage>.csv` plus
+`params_stage_<stage+1>.csv` in the current working directory.
+
+The general post-processing workflow uses:
+
+- `read_stage_outputs()` or `combine_stage_outputs()` to align stage
+  results;
+- `calculate_recursive_costs()` to calculate costs backward over any
+  number of stages;
+- `select_minimum_cost_plans()` to require `consumer_risk <= beta` at
+  every stage and retain all minimum-cost ties;
+- `write_postprocess_results()` for optional CSV reports in an explicit
+  output directory.
+
+A complete fast example is provided in
+[`inst/examples/minimal_end_to_end.R`](inst/examples/minimal_end_to_end.R),
+with its configuration in
+[`inst/examples/example_parameters.R`](inst/examples/example_parameters.R).
+Run it from the repository root after installing the package:
+
+``` powershell
+Rscript --vanilla inst/examples/minimal_end_to_end.R
+```
+
+See [`HANDOFF.md`](HANDOFF.md) for the tested environment,
+generated-output classification, data policy, known assumptions, and
+future-maintenance guidance.
 
 ## Post-processing example
 
@@ -65,3 +106,15 @@ selection$selected_plans
 #>   plan total_expected_cost feasible
 #> 2    B                 204     TRUE
 ```
+
+## Data and outputs
+
+No historical simulation output is needed or supported as an input
+dependency. Users should generate new stage outputs from a documented
+parameter configuration. Large historical research outputs, manuscripts,
+and presentations are intentionally excluded from the code repository
+and releases.
+
+Stage files are regenerable inputs to the file-based post-processing
+workflow. Parameter files and optional report CSVs are also regenerable
+and do not need to be archived with the package source.
