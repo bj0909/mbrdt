@@ -10,11 +10,12 @@
 status](https://travis-ci.com/bj0909/mbrdt.svg?branch=master)](https://travis-ci.com/bj0909/mbrdt)
 <!-- badges: end -->
 
-The goal of mbrdt is to provide tools for designing multistage binomial
-reliability demonstration tests (MRDTs). It allows researchers and
-practitioners to simulate and optimize the costs of MBRDT designs,
-considering the multi-stage acceptance uncertainties and the potential
-subsequent costs of RDT, such as reliability growth costs and warranty
+The goal of `mbrdt` is to provide tools for designing multistage binomial
+reliability demonstration tests (MRDTs). The package implements the methodology
+developed in the paper *Optimal Test Design for Reliability Demonstration Under
+Multi-Stage Acceptance Uncertainties*. It allows researchers and practitioners
+to simulate and optimize the costs of MBRDT designs while accounting for
+multi-stage acceptance uncertainty, reliability growth costs, and warranty
 service costs.
 
 The maintained package is self-contained: no external historical dataset
