@@ -67,10 +67,6 @@ Run it from the repository root after installing the package:
 Rscript --vanilla inst/examples/minimal_end_to_end.R
 ```
 
-See [`HANDOFF.md`](HANDOFF.md) for the tested environment,
-generated-output classification, data policy, known assumptions, and
-future-maintenance guidance.
-
 ## Post-processing example
 
 Stage outputs are supplied explicitly as data frames. Expected warranty
