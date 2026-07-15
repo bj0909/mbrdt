@@ -91,7 +91,7 @@ multiStageRdt <- function(maxStageNumber = 2,
     # Add results to the data frame
     data <- add_AP(data, M, piDataFrame)
     data <- add_testing_cost(data, cv, cf)
-    data <- add_expected_w(data, M, pi, cw, V, G)
+    data <- add_expected_w(data, M, piDataFrame, cw, V, G)
 
     # Output the results for the current iteration
     write.csv(data, file = paste("data_", k, ".csv", sep = ""), row.names = F)
